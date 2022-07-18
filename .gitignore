@@ -1,0 +1,9 @@
+# External modules
+Packages
+
+# Roblox Studio lock files
+/*.rbxlx.lock
+/*.rbxl.lock
+
+# Luau Language Server files
+sourcemap.json

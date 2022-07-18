@@ -1,0 +1,48 @@
+{
+  "name": "ExampleProject",
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "$className": "ReplicatedStorage",
+      "Source": {
+        "$ignoreUnknownInstances": true,
+        "$path": "src/shared"
+      },
+      "Packages": {
+        "$className": "Folder",
+        "$ignoreUnknownInstances": true,
+        "$path": "Packages"
+      }
+    },
+    "ServerScriptService": {
+      "$className": "ServerScriptService",
+      "Source": {
+        "$ignoreUnknownInstances": true,
+        "$path": "src/server"
+      }
+    },
+    "StarterPlayer": {
+      "$className": "StarterPlayer",
+      "StarterPlayerScripts": {
+        "$className": "StarterPlayerScripts",
+        "$ignoreUnknownInstances": true,
+        "Source": {
+          "$ignoreUnknownInstances": true,
+          "$path": "src/client"
+        }
+      }
+    },
+    "Workspace": {
+      "$className": "Workspace",
+      "$properties": {
+        "FilteringEnabled": true
+      }
+    },
+    "SoundService": {
+      "$className": "SoundService",
+      "$properties": {
+        "RespectFilteringEnabled": true
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+name = "assets"
+upload-to-group-id = 15281795
+
+[[inputs]]
+glob = "assets/**/*.png"
+
+codegen = true
+codegen-path = "src/assets.lua"
+codegen-base-path = "assets"
