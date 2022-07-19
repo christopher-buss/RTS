@@ -11,7 +11,7 @@ sourcemap.json
 
 # Personal notes
 /*.pages
+.DS_Store
 
 # Wally types
 wally-package-types
-.DS_Store

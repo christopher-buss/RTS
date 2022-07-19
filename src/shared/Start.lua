@@ -3,31 +3,39 @@ local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
 
 local Packages = ReplicatedStorage.Packages
-local HotReloader = require(Packages.Rewire).HotReloader
 local Matter = require(Packages.Matter)
 local Plasma = require(Packages.Plasma)
+local HotReloader = require(Packages.Rewire).HotReloader
 
-local function start(container)
+local Components = require(script.Parent.Components)
+
+local function start(containers)
     local world = Matter.World.new()
     local state = {}
 
     local debugger = Matter.Debugger.new(Plasma)
 
-    local loop = Matter.Loop.new(world, debugger:getWidgets())
+    debugger.findInstanceFromEntity = function(id)
+        if not world:contains(id) then
+            return
+        end
+
+        local model = world:get(id, Components.Model)
+
+        return model and model.model or nil
+    end
+
+    local loop = Matter.Loop.new(world, state, debugger:getWidgets())
 
     -- Set up hot reloading
 
     local hotReloader = HotReloader.new()
 
-    local firstRunSystems: { any }? = {}
+    local firstRunSystems: any = {}
     local systemsByModule = {}
 
-    hotReloader:scan(container, function(module, context)
+    local function loadModule(module, context)
         local originalModule = context.originalModule
-
-        if not module:IsA("ModuleScript") then
-            return
-        end
 
         local ok, system = pcall(require, module)
 
@@ -46,7 +54,9 @@ local function start(container)
         end
 
         systemsByModule[originalModule] = system
-    end, function(_, context)
+    end
+
+    local function unloadModule(_, context)
         if context.isReloading then
             return
         end
@@ -56,14 +66,14 @@ local function start(container)
             loop:evictSystem(systemsByModule[originalModule])
             systemsByModule[originalModule] = nil
         end
-    end)
+    end
+
+    for _, container in containers do
+        hotReloader:scan(container, loadModule, unloadModule)
+    end
 
     loop:scheduleSystems(firstRunSystems)
     firstRunSystems = nil
-
-    debugger.authorize = function(player)
-        return player:GetRankInGroup(97123) == 255
-    end
 
     debugger:autoInitialize(loop)
 
@@ -77,8 +87,8 @@ local function start(container)
     if RunService:IsClient() then
         UserInputService.InputBegan:Connect(function(input)
             if input.KeyCode == Enum.KeyCode.F4 then
-                print("Toggle")
                 debugger:toggle()
+
                 state.debugEnabled = debugger.enabled
             end
         end)
