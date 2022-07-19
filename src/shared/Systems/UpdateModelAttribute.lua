@@ -2,12 +2,15 @@ local RunService = game:GetService("RunService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Components = require(ReplicatedStorage.Source.Components)
 
+type ModelComponent = Components.ModelComponent
+
 local name = RunService:IsServer() and "serverEntityId" or "clientEntityId"
 
 local function updateModelAttribute(world)
-    for id, record in world:queryChanged(Components.Model) do
-        if record.new then
-            record.new.model:SetAttribute(name, id)
+    for id: number, modelRecord in world:queryChanged(Components.Model) do
+        local model: ModelComponent = modelRecord.new
+        if model then
+            model.model:SetAttribute(name, id)
         end
     end
 end

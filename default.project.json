@@ -4,20 +4,20 @@
     "$className": "DataModel",
     "ReplicatedStorage": {
       "$className": "ReplicatedStorage",
+      "MatterRemote": {
+        "$path": "src/MatterRemote.model.json"
+      },
       "Source": {
-        "$ignoreUnknownInstances": true,
         "$path": "src/shared"
       },
       "Packages": {
         "$className": "Folder",
-        "$ignoreUnknownInstances": true,
         "$path": "Packages"
       }
     },
     "ServerScriptService": {
       "$className": "ServerScriptService",
       "Source": {
-        "$ignoreUnknownInstances": true,
         "$path": "src/server"
       }
     },
@@ -25,9 +25,7 @@
       "$className": "StarterPlayer",
       "StarterPlayerScripts": {
         "$className": "StarterPlayerScripts",
-        "$ignoreUnknownInstances": true,
         "Source": {
-          "$ignoreUnknownInstances": true,
           "$path": "src/client"
         }
       }
@@ -42,6 +40,12 @@
       "$className": "SoundService",
       "$properties": {
         "RespectFilteringEnabled": true
+      }
+    },
+    "TestService": {
+      "$className": "TestService",
+      "Tests": {
+        "$path": "tests"
       }
     }
   }

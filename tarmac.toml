@@ -1,5 +1,5 @@
 name = "assets"
-upload-to-group-id = 15281795
+upload-to-group-id = 5278320
 
 [[inputs]]
 glob = "assets/**/*.png"

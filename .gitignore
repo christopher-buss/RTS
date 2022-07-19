@@ -1,5 +1,6 @@
 # External modules
 Packages
+DevPackages
 
 # Roblox Studio lock files
 /*.rbxlx.lock
@@ -7,3 +8,10 @@ Packages
 
 # Luau Language Server files
 sourcemap.json
+
+# Personal notes
+/*.pages
+
+# Wally types
+wally-package-types
+.DS_Store

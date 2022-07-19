@@ -1,10 +1,11 @@
 {
     "recommendations": [
+        "JohnnyMorganz.luau-lsp",
         "JohnnyMorganz.stylua",
+        "Kampfkarren.roblox-lua-autofills",
         "Kampfkarren.selene-vscode",
         "evaera.vscode-rojo",
-        "UnderMyWheel.roblox-lua",
-        "Nightrains.robloxlsp",
-        "Kampfkarren.roblox-lua-autofills"
+        "filiptibell.wally-utilities",
+        "tacheometrist.testez-companion",
     ]
 }

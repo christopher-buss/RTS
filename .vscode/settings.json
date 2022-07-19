@@ -1,7 +1,5 @@
 {
     "editor.formatOnSave": true,
-    "robloxLsp.completion.callParenthesess": true,
-    "robloxLsp.completion.endAutocompletion": true,
     "rojo.pluginManagement": true,
     "explorer.fileNesting.enabled": true,
     "explorer.fileNesting.patterns": {
@@ -15,14 +13,12 @@
         "init.server.lua": "*.lua",
         "init.client.lua": "*.lua"
     },
-    "robloxLsp.intelliSense.searchDepth": 2,
-    "robloxLsp.hint.enable": true,
-    "robloxLsp.hint.variableType": false,
-    "robloxLsp.hint.paramType": false,
-    "robloxLsp.completion.displayContext": 1,
-    "robloxLsp.typeChecking.mode": "Strict",
-    "robloxLsp.typeChecking.showFullType": true,
     "rojo.releaseBranch": "7.x",
     "editor.inlineSuggest.enabled": true,
     "luau-lsp.sourcemap.rojoProjectFile": "default.project.json",
+    "luau-lsp.autocompleteEnd": true,
+    "luau-lsp.types.definitionFiles": [
+        "testez.d.lua"
+    ],
+    "robloxOutputSync.startAutomatically": true,
 }

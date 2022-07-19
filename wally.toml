@@ -1,5 +1,5 @@
 [package]
-name = "sentinel/invictus"
+name = "sentinel/rts"
 version = "0.1.0"
 registry = "https://github.com/UpliftGames/wally-index"
 realm = "shared"
@@ -12,3 +12,4 @@ Plasma = "evaera/plasma@0.4.2"
 Promise = "evaera/promise@4.0.0"
 Rewire = "sayhisam1/rewire@0.3.0"
 Silo = "sleitnick/silo@0.1.0"
+TestEZ = "roblox/testez@0.4.1"

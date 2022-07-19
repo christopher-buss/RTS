@@ -1,13 +1,16 @@
 local CollectionService = game:GetService("CollectionService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
+local Packages = ReplicatedStorage.Packages
+local Matter = require(Packages.Matter)
+
 local Components = require(script.Parent.Components)
 
 local boundTags = {
     -- Boss = Components.Boss,
 }
 
-local function setupTags(world)
+local function setupTags(world: Matter.World)
     local function spawnBound(instance, component)
         local id = world:spawn(
             component(),

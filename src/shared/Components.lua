@@ -1,27 +1,60 @@
+--[=[
+    @class Components
+    @server @client
+
+    This is a single store of truth for any [Component](https://eryn.io/matter/api/Component)
+    that is present in the world.
+]=]
+
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Packages = ReplicatedStorage.Packages
 local Matter = require(Packages.Matter)
 
-local Model = require(script.Parent.Components.Model)
-
-local test: Model.Model = {
-    ree = 5,
-    model = Instance.new("Model"),
-}
-
-local COMPONENTS = {
-    "Animation",
-    "Health",
-    "Model",
-    "Target",
-    "Transform",
-}
-
 local components = {}
 
-for _, name in ipairs(COMPONENTS) do
-    components[name] = Matter.component(name)
+--[=[
+    @within Components
+    @private
+
+    Helper function to create a component in Matter.
+]=]
+local function createComponent(name: string, defaultData: any)
+    -- I can probably remove this and just supply it with the empty {}
+    if not next(defaultData) then
+        components[name] = Matter.component(name)
+        return
+    end
+
+    components[name] = Matter.component(name, defaultData)
 end
+
+-------------------------------------------------------------------------------
+-- Component definitions
+-------------------------------------------------------------------------------
+
+createComponent("Animation", {})
+export type AnimationComponent = {}
+
+createComponent("Health", {})
+export type HealthComponent = {
+    currentHealth: number,
+    initialHealth: number,
+    maxHealth: number,
+}
+
+createComponent("Model", {})
+export type ModelComponent = {
+    model: Model,
+}
+
+createComponent("Target", {})
+export type TargetComponent = {}
+
+createComponent("Transform", {})
+export type TransformComponent = {
+    position: Vector3,
+    rotation: Vector3?,
+}
 
 return components
