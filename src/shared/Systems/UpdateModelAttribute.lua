@@ -6,6 +6,11 @@ type ModelComponent = Components.ModelComponent
 
 local name = RunService:IsServer() and "serverEntityId" or "clientEntityId"
 
+--[=[
+    @server @client
+
+    Adds the id of an entity to a model for reconciliation purposes.
+]=]
 local function updateModelAttribute(world)
     for id: number, modelRecord in world:queryChanged(Components.Model) do
         local model: ModelComponent = modelRecord.new

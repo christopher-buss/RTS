@@ -48,6 +48,17 @@ export type ModelComponent = {
     model: Model,
 }
 
+createComponent("Movement", {})
+export type MovementComponent = {
+    movemementSpeed: number,
+}
+
+createComponent("Selected", {})
+export type SelectedComponent = {}
+
+createComponent("Selectable", {})
+export type SelectableComponent = {}
+
 createComponent("Target", {})
 export type TargetComponent = {}
 
@@ -55,6 +66,12 @@ createComponent("Transform", {})
 export type TransformComponent = {
     position: Vector3,
     rotation: Vector3?,
+}
+
+createComponent("Unit", {})
+export type UnitComponent = {
+    appearance: Model,
+    owner: Player,
 }
 
 return components
