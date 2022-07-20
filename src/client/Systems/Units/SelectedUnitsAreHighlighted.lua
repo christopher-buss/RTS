@@ -5,6 +5,8 @@ local Matter = require(Packages.Matter)
 
 local Components = require(ReplicatedStorage.Shared.Components)
 
+local CanSelectUnit = require(script.Parent.CanSelectUnit)
+
 type ModelComponent = Components.ModelComponent
 type SelectedComponent = Components.SelectedComponent
 type World = Matter.World
@@ -44,4 +46,7 @@ local function SelectedUnitsAreHighlighted(world: World)
     end
 end
 
-return SelectedUnitsAreHighlighted
+return {
+    system = SelectedUnitsAreHighlighted,
+    after = { CanSelectUnit },
+}

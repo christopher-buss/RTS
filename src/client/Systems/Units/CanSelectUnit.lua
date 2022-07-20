@@ -3,10 +3,12 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Packages = ReplicatedStorage.Packages
 local Matter = require(Packages.Matter)
 local Mouse = require(Packages.Input).Mouse
+local Keyboard = require(Packages.Input).Keyboard
 
 local Components = require(ReplicatedStorage.Shared.Components)
 
 type Mouse = typeof(Mouse.new())
+type Keyboard = typeof(Keyboard.new())
 type SelectedComponent = Components.SelectedComponent
 type World = Matter.World
 
@@ -14,9 +16,11 @@ type World = Matter.World
 -- We could likely have a player state somewhere for the local player that holds the mouse
 -- (we do not want to create this every frame)
 local mouse: Mouse = Mouse.new()
+local keyboard: Keyboard = Keyboard.new()
 
 --[=[
     @within Unit
+    @client
     @private
 
     Returns the entityId of any unit that is currently underneath the mouse of the localplayer. If no unit is underneath the mouse, returns nil.
@@ -38,33 +42,51 @@ end
 
 --[=[
     @within Unit
-    @client
+    @private
 
     Deselects all units that are currently selected.
 ]=]
-local function deselectUnits(world: World)
+local function deselectAllUnits(world: World)
     -- We probably wish to at some point have it so that we can pass in a set
     -- of entityIds that we wish to not deselect. Will need prototyping.
     for id: number, _selected: SelectedComponent in world:query(Components.Selected) do
-        print("Deselecting Unit")
         world:remove(id, Components.Selected)
     end
 end
 
 --[=[
     @within Unit
+    @private
+
+    Deselects a specified unit.
+]=]
+local function deselectUnit(world: World, id: number)
+    world:remove(id, Components.Selected)
+end
+
+--[=[
+    @within Unit
+    @private
+    
+    Gets the number of entities that have a set of given components.
+]=]
+local function getTotalEntitiesWithComponents(world: World, ...)
+    local totalEntities = 0
+    for _ in world:query(...) do
+        totalEntities += 1
+    end
+    return totalEntities
+end
+
+--[=[
+    @within Unit
     @tag System
-    @client
 
     Gives the user the ability to select and deselect owned units.
 ]=]
 local function CanSelectUnit(world: World)
     -- Select Units
     for _ in Matter.useEvent(mouse, mouse.LeftDown) do
-        -- TODO: Currently we are deselecting all units and reselecting.
-        -- Does this cause stuttering on visualisation?
-        deselectUnits(world)
-
         local id = getUnitBelowMouse()
         if not id then
             continue
@@ -75,13 +97,29 @@ local function CanSelectUnit(world: World)
             continue
         end
 
-        print("Selected Unit:", id)
+        local alreadySelected = world:get(id, Components.Selected)
+        if alreadySelected then
+            if keyboard:IsKeyDown(Enum.KeyCode.LeftControl) then
+                deselectUnit(world, id)
+                continue
+            end
+            local amount = getTotalEntitiesWithComponents(world, Components.Selected)
+            if amount < 2 then
+                deselectAllUnits(world)
+                continue
+            end
+        end
+
+        if not keyboard:IsKeyDown(Enum.KeyCode.LeftControl) then
+            deselectAllUnits(world)
+        end
+
         world:insert(id, Components.Selected())
     end
 
     -- Deselect Units
     for _ in Matter.useEvent(mouse, mouse.RightDown) do
-        deselectUnits(world)
+        deselectAllUnits(world)
     end
 end
 

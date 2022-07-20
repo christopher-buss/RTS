@@ -22,10 +22,11 @@ type World = Matter.World
     for the purposes of this game.
 ]=]
 local function UpdateMissingModels(world: World)
-    for id: number, _transform: TransformComponent, unit: UnitComponent in
+    for id: number, transform: TransformComponent, unit: UnitComponent in
         world:query(Components.Transform, Components.Unit):without(Components.Model)
     do
         local model = unit.appearance:Clone()
+        model.PrimaryPart.Position = transform.position
         model.Parent = workspace
 
         world:insert(
