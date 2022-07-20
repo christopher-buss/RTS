@@ -7,5 +7,4 @@ local world = Start({
     script.Parent.Systems,
     ReplicatedStorage.Source.Systems,
 })
-
 SetupTags(world)
