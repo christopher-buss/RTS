@@ -4,7 +4,7 @@ local Packages = ReplicatedStorage.Packages
 local Matter = require(Packages.Matter)
 local Mouse = require(Packages.Input).Mouse
 
-local Components = require(ReplicatedStorage.Source.Components)
+local Components = require(ReplicatedStorage.Shared.Components)
 
 type Mouse = typeof(Mouse.new())
 type SelectedComponent = Components.SelectedComponent

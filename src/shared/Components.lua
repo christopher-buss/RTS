@@ -53,7 +53,9 @@ export type MovementComponent = {
     movemementSpeed: number,
 }
 
-createComponent("Selected", {})
+createComponent("Selected", {
+    selected = false,
+})
 export type SelectedComponent = {}
 
 createComponent("Selectable", {})

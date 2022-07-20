@@ -1,6 +1,6 @@
 local RunService = game:GetService("RunService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local Components = require(ReplicatedStorage.Source.Components)
+local Components = require(ReplicatedStorage.Shared.Components)
 
 type ModelComponent = Components.ModelComponent
 

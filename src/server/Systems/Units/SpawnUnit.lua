@@ -4,7 +4,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Packages = ReplicatedStorage.Packages
 local Matter = require(Packages.Matter)
 
-local Components = require(ReplicatedStorage.Source.Components)
+local Components = require(ReplicatedStorage.Shared.Components)
 
 type TransformComponent = Components.TransformComponent
 type UnitComponent = Components.UnitComponent
@@ -31,7 +31,7 @@ local function SpawnUnit(world: World)
         position = Vector3.new(14, 0.5, -11),
     }
     local unitData: UnitComponent = {
-        appearance = ReplicatedStorage.Dummy,
+        appearance = ReplicatedStorage.Prefabs.Units.Dummy,
         owner = Players:GetPlayers()[1],
     }
     world:spawn(Components.Transform(transformData), Components.Unit(unitData))

@@ -4,7 +4,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Packages = ReplicatedStorage.Packages
 local Matter = require(Packages.Matter)
 
-local Components = require(ReplicatedStorage.Source.Components)
+local Components = require(ReplicatedStorage.Shared.Components)
 
 local RemoteEvent = ReplicatedStorage.MatterRemote
 

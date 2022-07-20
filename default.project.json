@@ -7,17 +7,23 @@
       "MatterRemote": {
         "$path": "src/MatterRemote.model.json"
       },
-      "Source": {
+      "Shared": {
         "$path": "src/shared"
       },
       "Packages": {
         "$className": "Folder",
         "$path": "Packages"
+      },
+      "Client": {
+        "$path": "src/client"
+      },
+      "Prefabs": {
+        "$path": "assets/prefabs"
       }
     },
     "ServerScriptService": {
       "$className": "ServerScriptService",
-      "Source": {
+      "Server": {
         "$path": "src/server"
       }
     },
@@ -25,8 +31,8 @@
       "$className": "StarterPlayer",
       "StarterPlayerScripts": {
         "$className": "StarterPlayerScripts",
-        "Source": {
-          "$path": "src/client"
+        "Game": {
+          "$path": "src/Game"
         }
       }
     },

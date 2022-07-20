@@ -1,5 +1,5 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local Components = require(ReplicatedStorage.Source.Components)
+local Components = require(ReplicatedStorage.Shared.Components)
 local RemoteEvent = ReplicatedStorage:WaitForChild("MatterRemote")
 
 local function setupReplication(world, state)
