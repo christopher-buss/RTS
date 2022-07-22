@@ -44,7 +44,8 @@ export type ModelComponent = {
 
 createComponent("Movement", {})
 export type MovementComponent = {
-    movementSpeed: number,
+    movementSpeed: number, -- amount of grids per second
+    maxForce: number, -- rate of acceleration
 }
 
 createComponent("Selected", {

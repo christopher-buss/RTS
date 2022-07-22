@@ -49,8 +49,8 @@ local function UpdateUnitModel(world: World)
             continue
         end
 
-        local direction = (targetLocation - currentLocation).unit / 100
-        local newLocation = currentLocation + direction * movement.movementSpeed
+        local direction = (targetLocation - currentLocation).unit
+        local newLocation = currentLocation + direction * movement.movementSpeed * Matter.useDeltaTime()
 
         model.model:PivotTo(CFrame.new(newLocation))
     end

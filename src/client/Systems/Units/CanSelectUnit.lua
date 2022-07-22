@@ -27,7 +27,7 @@ local Camera = workspace.CurrentCamera
 local lastPos
 
 -- TODO: Selection frame wont be visible if player resets
-local selectionFrame = Players.LocalPlayer.PlayerGui:WaitForChild("SelectionGui").SelectionFrame
+local selectionFrame = Players.LocalPlayer.PlayerGui:WaitForChild("UI"):WaitForChild("SelectionGui").SelectionFrame
 ---------------------------------
 
 --[=[

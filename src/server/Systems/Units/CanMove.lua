@@ -16,7 +16,6 @@ type World = Matter.World
 local function CanMove(world: World)
     -- This may not want to be in this?
     for _, sender, position, selectedUnits in Matter.useEvent(MoveUnitsRemote, MoveUnitsRemote.OnServerEvent) do
-        print(selectedUnits)
         local x = position.X
         local z = position.Y
 
@@ -39,8 +38,8 @@ local function CanMove(world: World)
     for id: number, target: TargetComponent, transform: TransformComponent, movement: MovementComponent in
         world:query(Components.Target, Components.Transform, Components.Movement, Components.Unit)
     do
-        local direction = (target.location - transform.position).unit / 100
-        local newLocation = transform.position + direction * movement.movementSpeed
+        local direction = (target.location - transform.position).unit
+        local newLocation = transform.position + direction * movement.movementSpeed * Matter.useDeltaTime()
 
         world:insert(
             id,
@@ -50,7 +49,6 @@ local function CanMove(world: World)
         )
 
         if (target.location - transform.position).Magnitude < 0.1 then
-            print("Removing")
             world:remove(id, Components.Target)
         end
     end
