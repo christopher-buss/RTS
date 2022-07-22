@@ -2,7 +2,9 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Components = require(ReplicatedStorage.Shared.Components)
 local RemoteEvent = ReplicatedStorage:WaitForChild("MatterRemote")
 
-local function setupReplication(world, state)
+local Codecs = require(ReplicatedStorage.Shared.Codecs)
+
+local function SetupReplication(world, state)
     local function debugPrint(...)
         if state.debugEnabled then
             print("Replication>", ...)
@@ -29,6 +31,12 @@ local function setupReplication(world, state)
             local removeNames = {}
 
             for name, container in componentMap do
+                -- If we have encoded any data then first we want to decode it
+                -- before adding it to the component.
+                if Codecs[name] then
+                    container.data = Codecs[name].decode(container.data)
+                end
+
                 if container.data then
                     table.insert(componentsToInsert, Components[name](container.data))
                     table.insert(insertNames, name)
@@ -69,4 +77,4 @@ local function setupReplication(world, state)
     end)
 end
 
-return setupReplication
+return SetupReplication

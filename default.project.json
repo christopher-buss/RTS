@@ -7,6 +7,9 @@
       "MatterRemote": {
         "$path": "src/MatterRemote.model.json"
       },
+      "MoveUnitsRemote": {
+        "$path": "src/MoveUnitsRemote.model.json"
+      },
       "Shared": {
         "$path": "src/shared"
       },

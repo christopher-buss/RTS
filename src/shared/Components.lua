@@ -20,12 +20,6 @@ local components = {}
     Helper function to create a component in Matter.
 ]=]
 local function createComponent(name: string, defaultData: any)
-    -- I can probably remove this and just supply it with the empty {}
-    if not next(defaultData) then
-        components[name] = Matter.component(name)
-        return
-    end
-
     components[name] = Matter.component(name, defaultData)
 end
 
@@ -50,7 +44,7 @@ export type ModelComponent = {
 
 createComponent("Movement", {})
 export type MovementComponent = {
-    movemementSpeed: number,
+    movementSpeed: number,
 }
 
 createComponent("Selected", {
@@ -62,12 +56,14 @@ createComponent("Selectable", {})
 export type SelectableComponent = {}
 
 createComponent("Target", {})
-export type TargetComponent = {}
+export type TargetComponent = {
+    location: Vector3,
+}
 
 createComponent("Transform", {})
 export type TransformComponent = {
     position: Vector3,
-    rotation: Vector3?,
+    orientation: number,
 }
 
 createComponent("Unit", {})

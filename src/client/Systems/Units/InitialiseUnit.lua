@@ -26,6 +26,8 @@ local function InitialiseUnit(world: World)
         if Players.LocalPlayer == unit.owner then
             print("Unit Is Selectable")
             world:insert(id, Components.Selectable())
+            -- world:insert(id, Components.Transform())
+            -- world:insert(id, Components.Transform_Networked())
         end
     end
 end

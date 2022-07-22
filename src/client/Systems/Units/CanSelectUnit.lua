@@ -206,16 +206,16 @@ local function CanSelectUnit(world: World)
         deselectAllUnits(world)
     end
 
+    if keyboard:IsKeyDown(Enum.KeyCode.C) then
+        deselectAllUnits(world)
+    end
+
     -- Selection Frame
     if mouse:IsLeftDown() then
         local mousePosition = mouse:GetPosition()
 
-        -- If the mouse hasnt moved then we don't want to deselect the current
-        -- unit. TODO: Can this be given some leway so a little movement does
-        -- not deselect the unit?
-        print((mousePosition - lastPos).magnitude)
-
-        if (mousePosition - lastPos).magnitude < 10 then
+        local SOME_SMALL_MAGNITUDE = 10
+        if (mousePosition - lastPos).magnitude < SOME_SMALL_MAGNITUDE then
             return
         end
 

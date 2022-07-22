@@ -25,6 +25,9 @@ local function UpdateMissingModels(world: World)
     for id: number, transform: TransformComponent, unit: UnitComponent in
         world:query(Components.Transform, Components.Unit):without(Components.Model)
     do
+        -- print(id)
+        -- print(transform)
+
         local model = unit.appearance:Clone()
         model.PrimaryPart.Position = transform.position
         model.Parent = workspace
