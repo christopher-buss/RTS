@@ -56,6 +56,12 @@
       "Tests": {
         "$path": "tests"
       }
+    },
+    "StarterGui": {
+      "$className": "StarterGui",
+      "UI": {
+        "$path": "assets/UserInterface"
+      }
     }
   }
 }
