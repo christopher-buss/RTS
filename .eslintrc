@@ -1,0 +1,51 @@
+{
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"jsx": true,
+		"useJSXTextNode": true,
+		"ecmaVersion": 2018,
+		"sourceType": "module",
+		"project": "./tsconfig.json"
+	},
+	"ignorePatterns": [
+		"/out"
+	],
+	"plugins": [
+		"@typescript-eslint",
+		"roblox-ts",
+		"prettier"
+	],
+	"extends": [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/recommended",
+		"plugin:roblox-ts/recommended",
+		"plugin:prettier/recommended",
+		"typestrict"
+	],
+	"rules": {
+		"prettier/prettier": "warn",
+		"no-param-reassign": "error",
+		"prefer-const": [
+			"error",
+			{
+				"destructuring": "all"
+			}
+		],
+		"no-var": "error",
+		"@typescript-eslint/ban-types": [
+			"error",
+			{
+				"types": {
+					// add a custom message, AND tell the plugin how to fix it
+					"undefined": {
+						"message": "Use Option instead",
+						"fixWith": "Option<T>"
+					},
+					// un-ban a type that's banned by default
+					"{}": false
+				},
+				"extendDefaults": true
+			}
+		]
+	}
+}

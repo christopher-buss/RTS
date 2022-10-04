@@ -1,17 +1,13 @@
-# External modules
-Packages
-DevPackages
+# Typescript
+node_modules
+/out
+/include
+*.tsbuildinfo
 
 # Roblox Studio lock files
 /*.rbxlx.lock
 /*.rbxl.lock
 
-# Luau Language Server files
-sourcemap.json
-
 # Personal notes
 /*.pages
 .DS_Store
-
-# Wally types
-wally-package-types
